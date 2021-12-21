@@ -65,9 +65,6 @@ pub mod pallet {
 			claim: Vec<u8>
 		) -> DispatchResultWithPostInfo {
 			let sender = ensure_signed(origin)?;
-
-			ensure!(claim.len() <= T::StringLimit::get() as usize, Error::<T>::BadMetadata);
-
             ensure!(!Proofs::<T>::contains_key(&claim), Error::<T>::ProofAlreadyExist);
 
             Proofs::<T>::insert(
